@@ -74,11 +74,7 @@ class FSProcessorApp:
              messagebox.showerror("Error", f"Failed to load .fs file: {e}")
         else:
     
-             f1=open("hello.c32","wb")
-             print(obj.sections[1].data)
-             f1.write(obj.sections[1].data)
-             
-             f1.close()
+             objcopy(obj,"code", 'bin',"hello.c32")
         try:
             system_name=file_path
             splitdir=file_path.split("/")
