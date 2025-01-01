@@ -4,11 +4,12 @@ void scrollb8000();
 void copyb8000(int address,char *s);
 void locate(int x,int y);
 void putss(char* s);
+void clear();
 void start(){
     kernel_main();
 }
 void kernel_main(){
-    
+    clear();
     putss("hello world\n\n");
     for(;;);
 }
@@ -22,7 +23,14 @@ typedef int size_t;
 
 int NULL;
 char *scr2=(char *)0x000b8000L;//[80*26*2];
-
+void clear(){
+	int n=0;
+	char *src = scr2;//(char *)0x000b8000L;
+	for(n=0;n<80*24*2;n=n+2){
+		src[n]=32;
+		src[n+1]=0x60;
+	}
+}
 void scrollb8000()
 {
 	int n=0;
